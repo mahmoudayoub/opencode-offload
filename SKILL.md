@@ -1,6 +1,6 @@
 ---
 name: opencode-offload
-description: Offload a self-contained subtask (summarization, boilerplate generation, log triage, batch classification, draft text) to a local OpenRouter model via the `opencode` CLI instead of spending Claude tokens on it. Use when a task doesn't need this session's accumulated context or tool-use loop — just a prompt in, text out. Trigger on "offload this", "use opencode for this", "run this on openrouter/a cheaper model", or when doing large-volume mechanical work (e.g. summarizing many files, generating fixtures) where a free/cheap model is good enough.
+description: Offload a self-contained subtask (summarization, log triage, batch classification, draft generation) to a local opencode CLI (OpenRouter and other providers) instead of spending Claude tokens on it — also use whenever the user wants to save or reduce Claude token usage on a subtask. Use when a task doesn't need this session's accumulated context or tool-use loop — just a prompt in, text out. Trigger on "offload this", "use opencode for this", "run this on openrouter/a cheaper model", "save tokens on this", or when doing large-volume mechanical work (e.g. summarizing many files, generating fixtures) where a free/cheap model is good enough.
 ---
 
 # opencode Offload

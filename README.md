@@ -1,9 +1,9 @@
 # opencode-offload
 
 A Claude Code skill (plus an optional `/offload` slash command) that offloads
-self-contained subtasks — summarization, boilerplate generation, log triage,
-batch classification, draft text — to a local [opencode](https://opencode.ai)
-CLI installation instead of spending Claude tokens on them.
+self-contained subtasks — summarization, log triage, batch classification,
+draft generation — to a local [opencode](https://opencode.ai) CLI installation
+instead of spending Claude tokens on them.
 
 It works by shelling out to `opencode run ... --format json` and parsing the
 JSON event stream. This is a subprocess call, not a real subagent: opencode

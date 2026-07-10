@@ -9,7 +9,7 @@
     {
       "name": "opencode-offload",
       "source": "./",
-      "description": "Offload self-contained subtasks to a local opencode CLI instead of spending Claude tokens, with a free-model-only guard on by default."
+      "description": "Offload self-contained subtasks (summarization, log triage, batch classification, draft generation) to a local opencode CLI instead of spending Claude tokens, with a free-model-only guard on by default."
     }
   ]
 }
