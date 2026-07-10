@@ -34,7 +34,7 @@ Poor fits — keep these in the main conversation instead:
 Call the helper script via Bash:
 
 ```bash
-~/.claude/skills/opencode-offload/scripts/offload.sh "<prompt>"
+${CLAUDE_PLUGIN_ROOT}/scripts/offload.sh "<prompt>"
 ```
 
 It prints the model's final text to **stdout** and a one-line diagnostic
@@ -86,40 +86,40 @@ Examples:
 
 ```bash
 # Default free model — good for bulk/cheap work
-~/.claude/skills/opencode-offload/scripts/offload.sh "Summarize the errors in this log" -f /tmp/app.log
+${CLAUDE_PLUGIN_ROOT}/scripts/offload.sh "Summarize the errors in this log" -f /tmp/app.log
 
 # Naming a paid model WITHOUT -P: it gets skipped, guard error since nothing free is left
-~/.claude/skills/opencode-offload/scripts/offload.sh -m openrouter/anthropic/claude-haiku-4.5 "..."
+${CLAUDE_PLUGIN_ROOT}/scripts/offload.sh -m openrouter/anthropic/claude-haiku-4.5 "..."
 # -> [offload] skipping 'openrouter/anthropic/claude-haiku-4.5' -- known paid model (pass -P to allow paid models)
 # -> Error: no free models left in '...' after the free-only guard. Pass -P to allow paid models.
 
 # Explicitly opt into a paid model when quality matters more than cost
-~/.claude/skills/opencode-offload/scripts/offload.sh -P -m openrouter/anthropic/claude-haiku-4.5 \
+${CLAUDE_PLUGIN_ROOT}/scripts/offload.sh -P -m openrouter/anthropic/claude-haiku-4.5 \
   "Classify each line as ERROR/WARN/INFO: $(cat lines.txt)"
 
 # Mixed fallback list without -P: the paid entry is silently skipped, the free one is used
-~/.claude/skills/opencode-offload/scripts/offload.sh \
+${CLAUDE_PLUGIN_ROOT}/scripts/offload.sh \
   -m openrouter/anthropic/claude-haiku-4.5,opencode/deepseek-v4-flash-free -t 30 "..."
 
 # Structured output for scripts/Workflows
-~/.claude/skills/opencode-offload/scripts/offload.sh -j "Summarize this" | jq -r .text
+${CLAUDE_PLUGIN_ROOT}/scripts/offload.sh -j "Summarize this" | jq -r .text
 
 # Multi-turn: capture the session id, then continue it
-SID=$(~/.claude/skills/opencode-offload/scripts/offload.sh -j "Remember X=42" | jq -r .sessionID)
-~/.claude/skills/opencode-offload/scripts/offload.sh -s "$SID" "What is X?"
+SID=$(${CLAUDE_PLUGIN_ROOT}/scripts/offload.sh -j "Remember X=42" | jq -r .sessionID)
+${CLAUDE_PLUGIN_ROOT}/scripts/offload.sh -s "$SID" "What is X?"
 
 # Preview a paid-model call (needs -P, else the guard filters it before the dry-run even runs)
-~/.claude/skills/opencode-offload/scripts/offload.sh -n -P -m openrouter/anthropic/claude-opus-4.8 "big task"
+${CLAUDE_PLUGIN_ROOT}/scripts/offload.sh -n -P -m openrouter/anthropic/claude-opus-4.8 "big task"
 
 # Let opencode's own agent actually edit files in a scratch directory, unattended
-~/.claude/skills/opencode-offload/scripts/offload.sh -d /tmp/scratch -A build -U \
+${CLAUDE_PLUGIN_ROOT}/scripts/offload.sh -d /tmp/scratch -A build -U \
   "Generate 10 sample JSON fixtures matching schema.json in this directory"
 
 # See what's free right now
-~/.claude/skills/opencode-offload/scripts/offload.sh -l
+${CLAUDE_PLUGIN_ROOT}/scripts/offload.sh -l
 
 # See everything, including paid models
-~/.claude/skills/opencode-offload/scripts/offload.sh -l -P
+${CLAUDE_PLUGIN_ROOT}/scripts/offload.sh -l -P
 ```
 
 ## Notes

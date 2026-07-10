@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "opencode-offload",
+  "owner": {
+    "name": "Mahmoud Ayoub"
+  },
+  "description": "Single-plugin marketplace for opencode-offload: offload self-contained subtasks to a local opencode CLI instead of spending Claude tokens.",
+  "plugins": [
+    {
+      "name": "opencode-offload",
+      "source": "./",
+      "description": "Offload self-contained subtasks to a local opencode CLI instead of spending Claude tokens, with a free-model-only guard on by default."
+    }
+  ]
+}

@@ -33,24 +33,39 @@ accidentally spend money with this script.
 
 ## Install
 
-Clone directly into Claude Code's user-level skills directory so the paths
-documented in `SKILL.md` line up:
+This repo ships a `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`,
+so it installs as a proper Claude Code plugin — the `opencode-offload` skill and
+the `/opencode-offload:offload` slash command are both auto-discovered together,
+no manual file copying needed.
+
+**Option A — as a plugin marketplace (recommended):**
+
+```
+/plugin marketplace add mahmoudayoub/opencode-offload
+/plugin install opencode-offload@opencode-offload
+```
+
+Updates: `/plugin marketplace update` then `/plugin update opencode-offload`.
+
+**Option B — clone directly into your skills directory:**
 
 ```bash
 git clone https://github.com/mahmoudayoub/opencode-offload.git ~/.claude/skills/opencode-offload
 ```
 
-Claude Code auto-discovers `SKILL.md` files under `~/.claude/skills/`. To
-also get the `/offload` slash command:
+Because the repo includes `.claude-plugin/plugin.json`, Claude Code
+auto-loads it in place as `opencode-offload@skills-dir` on the next session —
+same skill and command, no marketplace registration, but you manage updates
+yourself (`git pull`).
 
-```bash
-mkdir -p ~/.claude/commands
-cp ~/.claude/skills/opencode-offload/commands/offload.md ~/.claude/commands/offload.md
-```
+Either way, invoke the slash command as `/opencode-offload:offload` (plugin
+components are namespaced by plugin name).
 
-The script itself (`scripts/offload.sh`) is a plain, dependency-free bash
-script — it works standalone too, called directly from any shell or agent
-with Bash access, independent of Claude Code.
+**Standalone, no Claude Code at all:** `scripts/offload.sh` is a plain,
+dependency-free bash script — call it directly from any shell or agent with
+Bash access. It doesn't reference `${CLAUDE_PLUGIN_ROOT}` itself (only
+`SKILL.md`/`commands/offload.md` do, for locating it), so just invoke it by
+whatever path you cloned the repo to.
 
 ## Usage
 
