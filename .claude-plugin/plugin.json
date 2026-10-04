@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "opencode-offload",
   "displayName": "opencode Offload",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Offload self-contained subtasks (summarization, log triage, batch classification, draft generation) to a local opencode CLI (OpenRouter and other providers) instead of spending Claude tokens, with a free-model-only guard on by default.",
   "author": {
     "name": "Mahmoud Ayoub",
